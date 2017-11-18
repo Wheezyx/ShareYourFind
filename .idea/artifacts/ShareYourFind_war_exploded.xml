@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="ShareYourFind:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/ShareYourFind_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="ShareYourFind/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="ShareYourFind" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
