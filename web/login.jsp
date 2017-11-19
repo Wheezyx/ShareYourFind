@@ -40,7 +40,7 @@
                      src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                      alt="">
                 <form class="form-signin" action="j_security_check" method="post">
-                    <input type="j_username" type="text" class="form-control" placeholder="Username" required autofocus>
+                    <input type="j_username" class="form-control" placeholder="Username" required autofocus>
                     <input name="j_password" type="password" class="form-control" placeholder="Password" required>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">
                         Sign in
@@ -54,7 +54,7 @@
 
 <footer class="footer">
     <div class="container">
-        <p class="navbar-text">ShareYourFind - developed by <a href="https://github.com/Wheezyx">Mateusz Wedeł</a></p>
+        <p class="navbar-text">ShareYourFind - developed by <a target="_blank" href="https://github.com/Wheezyx">Mateusz Wedeł</a></p>
     </div>
 </footer>
 

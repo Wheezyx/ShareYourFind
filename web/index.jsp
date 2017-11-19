@@ -104,7 +104,7 @@
 </div>
 <footer class="footer">
     <div class="container">
-        <p class="navbar-text">ShareYourFind - developed by <a href="https://github.com/Wheezyx">Mateusz Wedeł</a></p>
+        <p class="navbar-text">ShareYourFind - developed by <a target="_blank" href="https://github.com/Wheezyx">Mateusz Wedeł</a></p>
     </div>
 </footer>
 
