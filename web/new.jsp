@@ -30,6 +30,21 @@
 
 <!--Adding formula-->
 
+<div class="container">
+    <div class="col-md-8 col-md-offset-2">
+        <form class="form-signin" method="post" action="new">
+            <h2 class="form-signin-heading">Add new find!</h2>
+            <input name="inputName" type="text" class="form-control" placeholder="What?"
+                   required autofocus />
+            <input name="inputUrl" type="url" class="form-control" placeholder="URL"
+                   required autofocus />
+            <textarea name="inputDescription" rows="5" name="inputUsername"
+                      class="form-control" placeholder="Description" required autofocus></textarea>
+            <input class="btn btn-lg btn-primary btn-block" type="submit"
+                   value="Add!" />
+        </form>
+    </div>
+</div>
 
 <!--FOOTER-->
 
