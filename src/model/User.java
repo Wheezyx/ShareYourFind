@@ -28,6 +28,13 @@ public class User {
         this.password = password;
         this.active = active;
     }
+    public User(User user)
+    {
+        this.id = user.id;
+        this.username = user.username;
+        this.password = user.password;
+        this.email = user.email;
+    }
 
     public long getId() {
         return id;
