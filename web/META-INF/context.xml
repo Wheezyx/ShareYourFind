@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
     <Resource
-            name="jdbc/weekop"
+            name="jdbc/shareyourfind"
             auth="Container"
             type="javax.sql.DataSource"
             initialSize="10"
