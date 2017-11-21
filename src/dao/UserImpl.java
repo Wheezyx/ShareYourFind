@@ -1,7 +1,9 @@
 package dao;
 
 import model.User;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -9,16 +11,22 @@ import org.springframework.jdbc.support.KeyHolder;
 import util.ConnectionProvider;
 
 import javax.naming.NamingException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserImpl implements UserDAO {
 
     private static final String CREATE = "INSERT INTO user(username,email, is_active, password) VALUES (:username, :email, :active, :password);";
-
+    private static final String READ =
+            "SELECT user_id, username, email, password, is_active FROM user WHERE user_id = :id";
+    private static final String READ_BY_USERNAME =
+            "SELECT user_id, username, email, password, is_active FROM user WHERE username = :username";
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     public UserImpl() throws NamingException {
         jdbcTemplate = new NamedParameterJdbcTemplate(ConnectionProvider.getDataSource());
     }
+
     @Override
     public User create(User newObj) {
         User createdUser = new User(newObj);
@@ -32,8 +40,7 @@ public class UserImpl implements UserDAO {
         return createdUser;
     }
 
-    private void setRole(User user)
-    {
+    private void setRole(User user) {
         final String userRole = "INSERT INTO user_role(username) VALUES(:username)";
         SqlParameterSource parameterSource = new BeanPropertySqlParameterSource(user);
         jdbcTemplate.update(userRole, parameterSource);
@@ -41,7 +48,10 @@ public class UserImpl implements UserDAO {
 
     @Override
     public User read(Long pKey) {
-        return null;
+        User readedUser;
+        SqlParameterSource parameterSource = new MapSqlParameterSource("id", pKey);
+        readedUser = jdbcTemplate.queryForObject(READ, parameterSource, new RowMapp());
+        return readedUser;
     }
 
     @Override
@@ -55,7 +65,23 @@ public class UserImpl implements UserDAO {
     }
 
     @Override
-    public User getUserByUsername(String username) {
-        return null;
+    public User getByUsername(String username) {
+        User readedUser;
+        SqlParameterSource parameterSource = new MapSqlParameterSource("username", username);
+        readedUser = jdbcTemplate.queryForObject(READ_BY_USERNAME, parameterSource, new RowMapp());
+        return readedUser;
+    }
+
+    private class RowMapp implements RowMapper<User> {
+
+        @Override
+        public User mapRow(ResultSet resultSet, int i) throws SQLException {
+            User user = new User();
+            user.setId(resultSet.getLong("user_id"));
+            user.setEmail(resultSet.getString("email"));
+            user.setPassword(resultSet.getString("password"));
+            user.setUsername(resultSet.getString("username"));
+            return user;
+        }
     }
 }

@@ -15,8 +15,19 @@ public class UserService {
         user.setEmail(email);
         user.setActive(true);
         DAOFactory factory = DAOFactory.getDAOFactory();
-        UserDAO userDAO = factory.gerUserDAO();
+        UserDAO userDAO = factory.getUserDAO();
         userDAO.create(user);
     }
 
+    public User getById(long userId) throws NoSuchAlgorithmException, NamingException {
+        DAOFactory factory = DAOFactory.getDAOFactory();
+        UserDAO userDAO = factory.getUserDAO();
+        return userDAO.read(userId);
+    }
+
+    public User getByUsername(String username) throws NoSuchAlgorithmException, NamingException {
+        DAOFactory factory = DAOFactory.getDAOFactory();
+        UserDAO userDAO = factory.getUserDAO();
+        return userDAO.getByUsername(username);
+    }
 }

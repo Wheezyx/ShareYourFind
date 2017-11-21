@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Mateusz Wedeł
@@ -23,7 +24,14 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="#">Home</a></li>
                 <li><a href="#">Add</a></li>
-                <li><a href="#">LogIn</a></li>
+                <c:choose>
+                    <c:when test="${not empty sessionScope.user}">
+                        <li><a href="logout">Log out!</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="login">Log in!</a></li>
+                    </c:otherwise>
+                </c:choose>
             </ul>
         </div>
     </div>

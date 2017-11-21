@@ -5,8 +5,8 @@ import java.security.NoSuchAlgorithmException;
 
 public abstract class DAOFactory {
 
-    public static final int MYSQL_DAO_FACTORY = 0;
-    public abstract UserDAO gerUserDAO() throws NamingException;
+    private static final int MYSQL_DAO_FACTORY = 0;
+    public abstract UserDAO getUserDAO() throws NamingException;
 
     public static DAOFactory getDAOFactory() throws NoSuchAlgorithmException {
 
