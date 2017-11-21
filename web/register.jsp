@@ -40,7 +40,7 @@
                 <img class="profile-img"
                      src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                      alt="">
-                <form class="form-signin" method="post" action="#">
+                <form class="form-signin" method="post" action="register">
                     <input name="inputEmail" type="email" class="form-control" maxlength="35" placeholder="Email" required autofocus />
                     <input name="inputUsername" type="text" class="form-control" maxlength="20" placeholder="Username" required autofocus />
                     <input name="inputPassword" type="password" class="form-control" maxlength="35" placeholder="Password" id="password" required/>

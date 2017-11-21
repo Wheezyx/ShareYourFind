@@ -12,7 +12,7 @@ import javax.naming.NamingException;
 
 public class UserImpl implements UserDAO {
 
-    private static final String CREATE = "INSERT INTO use(username,email, is_active, password) VALUES (:username, :email :isActive :password);";
+    private static final String CREATE = "INSERT INTO user(username,email, is_active, password) VALUES (:username, :email, :active, :password);";
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 

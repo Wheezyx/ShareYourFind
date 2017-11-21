@@ -1,11 +1,12 @@
 package dao;
 
+import javax.naming.NamingException;
 import java.security.NoSuchAlgorithmException;
 
 public abstract class DAOFactory {
 
     public static final int MYSQL_DAO_FACTORY = 0;
-    public abstract UserDAO gerUserDAO();
+    public abstract UserDAO gerUserDAO() throws NamingException;
 
     public static DAOFactory getDAOFactory() throws NoSuchAlgorithmException {
 
