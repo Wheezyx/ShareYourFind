@@ -47,7 +47,7 @@
                     </button>
                 </form>
             </div>
-            <a href="#" class="text-center new-account">Create an account</a>
+            <a href="register.jsp" class="text-center new-account">Create an account</a>
         </div>
     </div>
 </div>

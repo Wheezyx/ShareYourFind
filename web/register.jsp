@@ -41,14 +41,18 @@
                      src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                      alt="">
                 <form class="form-signin" method="post" action="register">
-                    <input name="inputEmail" type="email" class="form-control" maxlength="35" placeholder="Email" required autofocus />
-                    <input name="inputUsername" type="text" class="form-control" maxlength="20" placeholder="Username" required autofocus />
-                    <input name="inputPassword" type="password" class="form-control" maxlength="35" placeholder="Password" id="password" required/>
-                    <input name="inputPassword" type="password" class="form-control" maxlength="35" placeholder="Confirm Password" id="confirm_password" required>
+                    <input name="inputEmail" type="email" class="form-control" maxlength="35" placeholder="Email"
+                           required autofocus/>
+                    <input name="inputUsername" type="text" class="form-control" maxlength="20" placeholder="Username"
+                           required autofocus/>
+                    <input name="inputPassword" type="password" class="form-control" maxlength="35"
+                           placeholder="Password" id="password" required/>
+                    <input name="inputPassword" type="password" class="form-control" maxlength="35"
+                           placeholder="Confirm Password" id="confirm_password" required>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Sing up</button>
                 </form>
             </div>
-            Already have an account? <a href="#" class="text-center">Log in!</a>
+            Already have an account? <a href="/login.jsp" class="text-center">Log in!</a>
         </div>
     </div>
 </div>
@@ -57,7 +61,8 @@
 
 <footer class="footer">
     <div class="container">
-        <p class="navbar-text">ShareYourFind - developed by <a target="_blank" href="https://github.com/Wheezyx">Mateusz Wedeł</a></p>
+        <p class="navbar-text">ShareYourFind - developed by <a target="_blank" href="https://github.com/Wheezyx">Mateusz
+            Wedeł</a></p>
     </div>
 </footer>
 
