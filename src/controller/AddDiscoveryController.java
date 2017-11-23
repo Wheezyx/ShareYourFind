@@ -1,0 +1,43 @@
+package controller;
+
+import Service.FindService;
+import model.User;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+
+@WebServlet("/add")
+public class AddDiscoveryController extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getUserPrincipal() != null) {
+            req.getRequestDispatcher("new.jsp").forward(req, resp);
+        } else {
+            resp.sendError(403);
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        String name = req.getParameter("inputName");
+        String description = req.getParameter("inputDescription");
+        String url = req.getParameter("inputUrl");
+        User authUser = (User) req.getSession().getAttribute("user");
+        if (req.getUserPrincipal() != null) {
+            FindService findService = new FindService();
+            try {
+                findService.addFind(name, description, url, authUser);
+                resp.sendRedirect(req.getContextPath() + "/");
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
+        } else
+            resp.sendError(403);
+    }
+}

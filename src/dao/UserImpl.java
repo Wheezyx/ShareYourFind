@@ -13,6 +13,7 @@ import util.ConnectionProvider;
 import javax.naming.NamingException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserImpl implements UserDAO {
 
@@ -62,6 +63,11 @@ public class UserImpl implements UserDAO {
     @Override
     public boolean delete(Long key) {
         return false;
+    }
+
+    @Override
+    public List<User> getAll() {
+        return null;
     }
 
     @Override

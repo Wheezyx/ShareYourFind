@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: User
@@ -21,8 +22,15 @@
         <div class="collapse navbar-collapse navHeaderCollapse">
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Add</a></li>
-                <li><a href="#">LogIn</a></li>
+                <li><a href="${pageContext.request.contextPath}/add">Dodaj</a></li>
+                <c:choose>
+                    <c:when test="${not empty sessionScope.user}">
+                        <li><a href="${pageContext.request.contextPath}/logout">Wyloguj się</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="${pageContext.request.contextPath}/login">Zaloguj się</a></li>
+                    </c:otherwise>
+                </c:choose>
             </ul>
         </div>
     </div>

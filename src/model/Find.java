@@ -12,17 +12,19 @@ public class Find {
     private int upVote;
     private int downVote;
 
-    public Find(){}
 
-    public Find(long id, String name, String descritpion, String url, Timestamp timestamp, User user, int upVote, int downVote) {
-        this.id = id;
-        this.name = name;
-        this.descritpion = descritpion;
-        this.url = url;
-        this.timestamp = timestamp;
-        this.user = user;
-        this.upVote = upVote;
-        this.downVote = downVote;
+    public Find(Find newObj){
+        this.id = newObj.id;
+        this.name = newObj.name;
+        this.descritpion = newObj.descritpion;
+        this.url = newObj.url;
+        this.timestamp = newObj.timestamp;
+        this.user = newObj.user;
+        this.upVote = newObj.upVote;
+        this.downVote = newObj.downVote;
+    }
+
+    public Find(){
     }
 
     public long getId() {
