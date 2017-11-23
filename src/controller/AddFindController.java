@@ -3,6 +3,7 @@ package controller;
 import Service.FindService;
 import model.User;
 
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +13,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 @WebServlet("/add")
-public class AddDiscoveryController extends HttpServlet {
+public class AddFindController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getUserPrincipal() != null) {
@@ -35,6 +36,8 @@ public class AddDiscoveryController extends HttpServlet {
                 findService.addFind(name, description, url, authUser);
                 resp.sendRedirect(req.getContextPath() + "/");
             } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            } catch (NamingException e) {
                 e.printStackTrace();
             }
         } else

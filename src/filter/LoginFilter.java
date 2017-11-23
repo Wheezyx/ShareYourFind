@@ -20,6 +20,7 @@ public class LoginFilter implements javax.servlet.Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
+
         if (httpServletRequest.getUserPrincipal() != null && httpServletRequest.getSession().getAttribute("user") == null) {
             try {
                 saveInSession(httpServletRequest);
@@ -36,7 +37,7 @@ public class LoginFilter implements javax.servlet.Filter {
         UserService userService = new UserService();
         String username = req.getUserPrincipal().getName();
         User byUsername = userService.getByUsername(username);
-        req .getSession(true).setAttribute("user",byUsername);
+        req.getSession(true).setAttribute("user",byUsername);
     }
     @Override
     public void destroy() {

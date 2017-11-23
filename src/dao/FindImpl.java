@@ -6,17 +6,22 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import util.ConnectionProvider;
 
+import javax.naming.NamingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class FindImpl implements FindDAO {
 
-    private static final String CREATE = "INSERT INTO find(name, description,url,user_id,date,up_vote,down_vote)"
-            + "VALUES(:name,:description,:url,:user_id,:up_vote,:down_vote";
+    private static final String CREATE = "INSERT INTO find(name, description, url, user_id, date, up_vote, down_vote) "
+            + "VALUES(:name, :description, :url, :user_id, :date, :up_vote, :down_vote);";
 
     private NamedParameterJdbcTemplate jdbcTemplate;
+    public FindImpl() throws NamingException {
+        jdbcTemplate = new NamedParameterJdbcTemplate(ConnectionProvider.getDataSource());
+    }
 
     @Override
     public Find create(Find newObj) {
@@ -26,13 +31,13 @@ public class FindImpl implements FindDAO {
         map.put("name",result.getName());
         map.put("description",result.getDescritpion());
         map.put("url",result.getUrl());
-        map.put("user_id",result.getUser());
+        map.put("user_id",result.getUser().getId());
         map.put("date", result.getTimestamp());
         map.put("up_vote",result.getUpVote());
         map.put("down_vote",result.getDownVote());
         SqlParameterSource parameterSource = new MapSqlParameterSource(map);
         int update = jdbcTemplate.update(CREATE,parameterSource,holder);
-        if (update >= 1)
+        if (update != 0)
             result.setId((Long) holder.getKey());
         return result;
     }
