@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Mateusz Wedeł
@@ -22,7 +23,7 @@
 
         <div class="collapse navbar-collapse navHeaderCollapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="index.jsp">Home</a></li>
                 <li><a href="${pageContext.request.contextPath}/add">Add</a></li>
                 <c:choose>
                     <c:when test="${not empty sessionScope.user}">
@@ -37,82 +38,35 @@
     </div>
 </nav>
 
-<div class="container">
-    <div class="row bs-callout bs-callout-primary">
-        <div class="col col-md-1 col-sm-2">
-            <a href="#" class="btn btn-block btn-primary btn-success"><span class="glyphicon glyphicon-chevron-up"></span>
-            </a>
-            <div class="well well-sm centered numberColor">0</div>
-            <a href="#" class="btn btn-block btn-primary btn-warning"><span
-                    class="glyphicon glyphicon-chevron-down"></span> </a>
+<c:if test="${not empty requestScope.finds}">
+    <c:forEach var="find" items="${requestScope.finds}">
+        <div class="container">
+            <div class="row bs-callout bs-callout-primary">
+                <div class="col col-md-1 col-sm-2">
+                    <a href="#" class="btn btn-block btn-primary btn-success"><span
+                            class="glyphicon glyphicon-chevron-up"></span> </a>
+                    <div class="well well-sm centered numberColor"><c:out value="${find.upVote - find.downVote}"/></div>
+                    <a href="#" class="btn btn-block btn-primary btn-warning"><span
+                            class="glyphicon glyphicon-chevron-down"></span> </a>
+                </div>
+                <div class="col col-md-11 col-sm-10">
+                    <h3 class="centered"><a href="<c:out value="${find.url}" />"><c:out value="${find.name}"/></a></h3>
+                    <h6>
+                        <small>Added by: <c:out value="${find.user.username}"/>,
+                            Date: <fmt:formatDate value="${find.timestamp}" pattern="dd/MM/YYYY"/></small>
+                    </h6>
+                    <p><c:out value="${find.descritpion}"/></p>
+                    <a href="<c:out value="${find.url}"/>" class="btn btn-default btn-xs">Check out!</a>
+                </div>
+            </div>
         </div>
-        <div class="col col-md-11 col-sm-10">
-            <h3 class="centered"><a href="#">Find!</a></h3>
-            <h6>
-                <small>Added by Mati</small>
-            </h6>
-            <p>Test</p>
-            <button class="btn btn-default btn-xs">Check out</button>
-        </div>
-    </div>
-    <div class="row bs-callout bs-callout-primary">
-        <div class="col col-md-1 col-sm-2">
-            <a href="#" class="btn btn-block btn-primary btn-success"><span class="glyphicon glyphicon-chevron-up"></span>
-            </a>
-            <div class="well well-sm centered numberColor">12</div>
-            <a href="#" class="btn btn-block btn-primary btn-warning"><span
-                    class="glyphicon glyphicon-chevron-down"></span> </a>
-        </div>
-        <div class="col col-md-11 col-sm-10">
-            <h3 class="centered"><a href="#">Find!</a></h3>
-            <h6>
-                <small>Added by Mati</small>
-            </h6>
-            <p>Test</p>
-            <button class="btn btn-default btn-xs">Checkout</button>
-        </div>
-    </div>
+    </c:forEach>
+</c:if>
 
-    <div class="row bs-callout bs-callout-primary">
-        <div class="col col-md-1 col-sm-2">
-            <a href="#" class="btn btn-block btn-primary btn-success"><span class="glyphicon glyphicon-chevron-up"></span>
-            </a>
-            <div class="well well-sm centered numberColor">12</div>
-            <a href="#" class="btn btn-block btn-primary btn-warning"><span
-                    class="glyphicon glyphicon-chevron-down"></span> </a>
-        </div>
-        <div class="col col-md-11 col-sm-10">
-            <h3 class="centered"><a href="#">Find!</a></h3>
-            <h6>
-                <small>Added by Mati</small>
-            </h6>
-            <p>Test</p>
-            <button class="btn btn-default btn-xs">Checkout</button>
-        </div>
-    </div>
-
-    <div class="row bs-callout bs-callout-primary">
-        <div class="col col-md-1 col-sm-2">
-            <a href="#" class="btn btn-block btn-primary btn-success"><span class="glyphicon glyphicon-chevron-up"></span>
-            </a>
-            <div class="well well-sm centered numberColor">12</div>
-            <a href="#" class="btn btn-block btn-primary btn-warning"><span
-                    class="glyphicon glyphicon-chevron-down"></span> </a>
-        </div>
-        <div class="col col-md-11 col-sm-10">
-            <h3 class="centered"><a href="#">Find!</a></h3>
-            <h6>
-                <small>Added by Mati</small>
-            </h6>
-            <p>Test</p>
-            <button class="btn btn-default btn-xs">Checkout</button>
-        </div>
-    </div>
-
-</div>
 <footer class="footer">
     <div class="container">
-        <p class="navbar-text">ShareYourFind - developed by <a target="_blank" href="https://github.com/Wheezyx">Mateusz Wedeł</a></p>
+        <p class="navbar-text">ShareYourFind - developed by <a target="_blank" href="https://github.com/Wheezyx">Mateusz
+            Wedeł</a></p>
     </div>
 </footer>
 

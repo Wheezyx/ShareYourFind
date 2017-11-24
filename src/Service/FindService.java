@@ -8,7 +8,9 @@ import model.User;
 import javax.naming.NamingException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 
 public class FindService {
 
@@ -25,4 +27,15 @@ public class FindService {
         FindDAO dao = factory.getFindDAO();
         dao.create(find);
     }
+    public List<Find> getAllFinds(Comparator<Find> comparator) throws NoSuchAlgorithmException, NamingException {
+        DAOFactory daoFactory = DAOFactory.getDAOFactory();
+        FindDAO dao = daoFactory.getFindDAO();
+        List<Find> finds = dao.getAll();
+        if (comparator != null && finds !=null)
+        {
+            finds.sort(comparator);
+        }
+        return finds;
+    }
+
 }

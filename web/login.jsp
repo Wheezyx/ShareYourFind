@@ -23,7 +23,7 @@
 
         <div class="collapse navbar-collapse navHeaderCollapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="/">Home</a></li>
                 <li><a href="#">Add</a></li>
                 <li><a href="#">LogIn</a></li>
             </ul>
