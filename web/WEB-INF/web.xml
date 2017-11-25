@@ -12,6 +12,7 @@
             <url-pattern>/add</url-pattern>
             <url-pattern>/login</url-pattern>
             <url-pattern>/profile</url-pattern>
+            <url-pattern>/vote</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>

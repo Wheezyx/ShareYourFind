@@ -27,15 +27,28 @@ public class FindService {
         FindDAO dao = factory.getFindDAO();
         dao.create(find);
     }
+
     public List<Find> getAllFinds(Comparator<Find> comparator) throws NoSuchAlgorithmException, NamingException {
         DAOFactory daoFactory = DAOFactory.getDAOFactory();
         FindDAO dao = daoFactory.getFindDAO();
         List<Find> finds = dao.getAll();
-        if (comparator != null && finds !=null)
-        {
+        if (comparator != null && finds != null) {
             finds.sort(comparator);
         }
         return finds;
     }
 
+    public Find getFindById(long findId) throws NoSuchAlgorithmException, NamingException {
+        DAOFactory daoFactory = DAOFactory.getDAOFactory();
+        FindDAO dao = daoFactory.getFindDAO();
+        Find find = dao.read(findId);
+        return find;
+    }
+
+    public boolean updateFind(Find find) throws NoSuchAlgorithmException, NamingException {
+        DAOFactory daoFactory = DAOFactory.getDAOFactory();
+        FindDAO dao = daoFactory.getFindDAO();
+        boolean result = dao.update(find);
+        return result;
+    }
 }

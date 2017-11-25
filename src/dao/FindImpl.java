@@ -25,6 +25,12 @@ public class FindImpl implements FindDAO {
     private static final String READ_ALL =
             "SELECT user.user_id, username, email, is_active, password, find_id, name, description, url, date, up_vote, down_vote "
                     + "FROM find LEFT JOIN user ON find.user_id=user.user_id;";
+    private static final String UPDATE =
+            "UPDATE find SET name=:name, description=:description, url=:url, user_id=:user_id, date=:date, up_vote=:up_vote, down_vote=:down_vote "
+                    + "WHERE find_id=:find_id;";
+    private static final String READ =
+            "SELECT user.user_id, username, email, is_active, password, find_id, name, description, url, date, up_vote, down_vote "
+                    + "FROM find LEFT JOIN user ON find.user_id=user.user_id WHERE find_id=:find_id;";
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     public FindImpl() throws NamingException {
@@ -45,19 +51,36 @@ public class FindImpl implements FindDAO {
         map.put("down_vote", result.getDownVote());
         SqlParameterSource parameterSource = new MapSqlParameterSource(map);
         int update = jdbcTemplate.update(CREATE, parameterSource, holder);
-        if (update != 0)
+        if (update > 0)
             result.setId((Long) holder.getKey());
         return result;
     }
 
     @Override
     public Find read(Long pKey) {
-        return null;
+        SqlParameterSource parameterSource = new MapSqlParameterSource("find_id",pKey);
+        Find find = jdbcTemplate.queryForObject(READ,parameterSource, new FindRowMapper());
+        return find;
     }
 
     @Override
     public boolean update(Find updateObj) {
-        return false;
+        boolean result = false;
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("find_id", updateObj.getId());
+        paramMap.put("name", updateObj.getName());
+        paramMap.put("description", updateObj.getDescritpion());
+        paramMap.put("url", updateObj.getUrl());
+        paramMap.put("user_id", updateObj.getUser().getId());
+        paramMap.put("date", updateObj.getTimestamp());
+        paramMap.put("up_vote", updateObj.getUpVote());
+        paramMap.put("down_vote", updateObj.getDownVote());
+        SqlParameterSource paramSource = new MapSqlParameterSource(paramMap);
+        int update = jdbcTemplate.update(UPDATE, paramSource);
+        if(update > 0) {
+            result = true;
+        }
+        return result;
     }
 
     @Override

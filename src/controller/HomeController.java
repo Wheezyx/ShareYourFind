@@ -30,17 +30,14 @@ public class HomeController extends HttpServlet {
 
     private void saveFindsRequest(HttpServletRequest req) throws NamingException, NoSuchAlgorithmException {
         FindService findService = new FindService();
-        List<Find> allFinds = findService.getAllFinds(new Comparator<Find>() {
-            @Override
-            public int compare(Find o1, Find o2) {
-                int vote1 = o1.getUpVote() - o1.getDownVote();
-                int vote2 = o2.getUpVote() - o2.getDownVote();
-                if (vote1 < vote2)
-                    return 1;
-                else if (vote1 > vote2)
-                    return -1;
-                return 0;
-            }
+        List<Find> allFinds = findService.getAllFinds((o1, o2) -> {
+            int vote1 = o1.getUpVote() - o1.getDownVote();
+            int vote2 = o2.getUpVote() - o2.getDownVote();
+            if (vote1 < vote2)
+                return 1;
+            else if (vote1 > vote2)
+                return -1;
+            return 0;
         });
         req.setAttribute("finds",allFinds);
     }

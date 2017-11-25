@@ -1,5 +1,5 @@
 package model;
 
 public enum VoteType {
-    VOTE_UP,VOTE_DOWN
+    VOTE_UP,VOTE_DOWN;
 }
