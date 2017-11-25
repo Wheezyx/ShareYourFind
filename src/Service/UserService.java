@@ -30,4 +30,10 @@ public class UserService {
         UserDAO userDAO = factory.getUserDAO();
         return userDAO.getByUsername(username);
     }
+    public boolean updateUser(User user) throws NoSuchAlgorithmException, NamingException {
+        DAOFactory factory = DAOFactory.getDAOFactory();
+        UserDAO dao = factory.getUserDAO();
+        boolean result = dao.update(user);
+        return result;
+    }
 }

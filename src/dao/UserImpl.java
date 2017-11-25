@@ -13,7 +13,9 @@ import util.ConnectionProvider;
 import javax.naming.NamingException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserImpl implements UserDAO {
 
@@ -22,6 +24,8 @@ public class UserImpl implements UserDAO {
             "SELECT user_id, username, email, password, is_active FROM user WHERE user_id = :id";
     private static final String READ_BY_USERNAME =
             "SELECT user_id, username, email, password, is_active FROM user WHERE username = :username";
+    private static final String UPDATE = "UPDATE user SET password=:password WHERE user_id=:user_id;";
+
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     public UserImpl() throws NamingException {
@@ -57,7 +61,17 @@ public class UserImpl implements UserDAO {
 
     @Override
     public boolean update(User updateObj) {
-        return false;
+        boolean result = false;
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("password",updateObj.getPassword());
+        paramMap.put("user_id",updateObj.getId());
+        SqlParameterSource parameterSource = new MapSqlParameterSource(paramMap);
+        int update = jdbcTemplate.update(UPDATE,parameterSource);
+        if (update > 0)
+        {
+            result = true;
+        }
+        return result;
     }
 
     @Override

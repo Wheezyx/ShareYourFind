@@ -16,7 +16,6 @@
     <link href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-
 <nav class="navbar navbar-inverse navbar-fixed-top header">
     <div class="container">
         <a href="#" class="navbar-brand">ShareYourFind</a>
@@ -27,6 +26,7 @@
                 <li><a href="${pageContext.request.contextPath}/add">Add</a></li>
                 <c:choose>
                     <c:when test="${not empty sessionScope.user}">
+                        <li><a href="${pageContext.request.contextPath}/profile">Profile</a></li>
                         <li><a href="logout">Log out!</a></li>
                     </c:when>
                     <c:otherwise>
@@ -37,6 +37,7 @@
         </div>
     </div>
 </nav>
+
 
 <c:if test="${not empty requestScope.finds}">
     <c:forEach var="find" items="${requestScope.finds}">
@@ -72,6 +73,7 @@
 
 <script src="http://code.jquery.com/jquery-1.11.2.min.2"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 </body>
 </html>
