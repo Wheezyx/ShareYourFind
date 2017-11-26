@@ -1,5 +1,6 @@
-package dao;
+package daoImpl;
 
+import dao.VoteDAO;
 import model.Vote;
 import model.VoteType;
 import org.springframework.dao.EmptyResultDataAccessException;

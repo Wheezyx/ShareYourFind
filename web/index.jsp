@@ -25,7 +25,7 @@
                 <li class="active"><a href="index.jsp">Home</a></li>
                 <li><a href="${pageContext.request.contextPath}/add">Add</a></li>
                 <c:choose>
-                    <c:when test="${not empty sessionScope.user}">
+                    <c:when test="${sessionScope.user != null}">
                         <li><a href="${pageContext.request.contextPath}/profile">Profile</a></li>
                         <li><a href="logout">Log out!</a></li>
                     </c:when>
@@ -79,6 +79,6 @@
 <script src="http://code.jquery.com/jquery-1.11.2.min.2"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/npm.js"></script>
 </body>
 </html>

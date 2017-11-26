@@ -1,5 +1,6 @@
-package dao;
+package daoImpl;
 
+import dao.UserDAO;
 import model.User;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -101,6 +102,7 @@ public class UserImpl implements UserDAO {
             user.setEmail(resultSet.getString("email"));
             user.setPassword(resultSet.getString("password"));
             user.setUsername(resultSet.getString("username"));
+            user.setActive(resultSet.getBoolean("is_active"));
             return user;
         }
     }

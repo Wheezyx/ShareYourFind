@@ -121,5 +121,6 @@
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/profile.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/npm.js"></script>
 </body>
 </html>

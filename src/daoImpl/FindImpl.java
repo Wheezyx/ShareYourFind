@@ -1,5 +1,6 @@
-package dao;
+package daoImpl;
 
+import dao.FindDAO;
 import model.Find;
 import model.User;
 import org.springframework.jdbc.core.RowMapper;
@@ -59,8 +60,7 @@ public class FindImpl implements FindDAO {
     @Override
     public Find read(Long pKey) {
         SqlParameterSource parameterSource = new MapSqlParameterSource("find_id",pKey);
-        Find find = jdbcTemplate.queryForObject(READ,parameterSource, new FindRowMapper());
-        return find;
+        return jdbcTemplate.queryForObject(READ,parameterSource, new FindRowMapper());
     }
 
     @Override
@@ -90,8 +90,7 @@ public class FindImpl implements FindDAO {
 
     @Override
     public List<Find> getAll() {
-        List<Find> finds = jdbcTemplate.query(READ_ALL,new FindRowMapper());
-        return finds;
+        return jdbcTemplate.query(READ_ALL,new FindRowMapper());
     }
 
     public class FindRowMapper implements RowMapper<Find>
