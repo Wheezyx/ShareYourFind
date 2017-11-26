@@ -2,6 +2,7 @@ package controller;
 
 import Service.FindService;
 import model.User;
+import org.springframework.dao.DuplicateKeyException;
 
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
@@ -39,6 +40,9 @@ public class AddFindController extends HttpServlet {
                 e.printStackTrace();
             } catch (NamingException e) {
                 e.printStackTrace();
+            } catch (DuplicateKeyException e) {
+                req.setAttribute("existingFind", "Find already exists");
+                req.getRequestDispatcher("new.jsp").forward(req, resp);
             }
         } else
             resp.sendError(403);

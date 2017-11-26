@@ -38,7 +38,6 @@
     </div>
 </nav>
 
-
 <c:if test="${not empty requestScope.finds}">
     <c:forEach var="find" items="${requestScope.finds}">
         <div class="container">

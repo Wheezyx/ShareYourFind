@@ -2,6 +2,7 @@ package controller;
 
 
 import Service.UserService;
+import org.springframework.dao.DuplicateKeyException;
 
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
@@ -29,11 +30,16 @@ public class RegisterController extends HttpServlet{
         UserService service = new UserService();
         try {
             service.addUser(username,email,pass);
+            resp.sendRedirect(req.getContextPath()+ "/");
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (NamingException e) {
             e.printStackTrace();
+        } catch (DuplicateKeyException e)
+        {
+            System.out.println(e.toString());
+            req.setAttribute("existingUser", "Username/email already taken");
+            req.getRequestDispatcher("register.jsp").forward(req, resp);
         }
-        resp.sendRedirect(req.getContextPath()+ "/");
     }
 }

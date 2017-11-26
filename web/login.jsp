@@ -40,6 +40,11 @@
                 <img class="profile-img"
                      src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                      alt="">
+                <c:if test="${requestScope['javax.servlet.forward.request_uri'] == '/j_security_check'}">
+                    <div class="alert alert-danger">
+                        <strong>Your username or password is incorrect. Please try again.</strong>
+                    </div>
+                </c:if>
                 <form class="form-signin" action="j_security_check" method="post">
                     <input name="j_username" type="text" class="form-control" placeholder="Username" required autofocus>
                     <input name="j_password" type="password" class="form-control" placeholder="Password" required>
