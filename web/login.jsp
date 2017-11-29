@@ -38,11 +38,16 @@
             <h1 class="text-center login-title">Sign in to continue to ShareYourFind</h1>
             <div class="account-wall">
                 <img class="profile-img"
-                     src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                     src="https://cs.rin.ru/forum/download/file.php?avatar=723065_1497742853.png"
                      alt="">
                 <c:if test="${requestScope['javax.servlet.forward.request_uri'] == '/j_security_check'}">
                     <div class="alert alert-danger">
                         <strong>Your username or password is incorrect. Please try again.</strong>
+                    </div>
+                </c:if>
+                <c:if test="${requestScope['javax.servlet.forward.request_uri'] == '/vote'}">
+                    <div class="alert alert-danger">
+                        <strong>You need to login to vote!</strong>
                     </div>
                 </c:if>
                 <form class="form-signin" action="j_security_check" method="post">
@@ -60,7 +65,8 @@
 
 <footer class="footer">
     <div class="container">
-        <p class="navbar-text">ShareYourFind - developed by <a target="_blank" href="https://github.com/Wheezyx">Mateusz Wedeł</a></p>
+        <p class="navbar-text">ShareYourFind - developed by <a target="_blank" href="https://github.com/Wheezyx">Mateusz
+            Wedeł</a></p>
     </div>
 </footer>
 

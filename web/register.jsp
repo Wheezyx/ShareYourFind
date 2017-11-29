@@ -39,7 +39,7 @@
             <h1 class="text-center login-title">Create your account!</h1>
             <div class="account-wall">
                 <img class="profile-img"
-                     src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                     src="https://cs.rin.ru/forum/download/file.php?avatar=723065_1497742853.png"
                      alt="">
                 <c:if test="${requestScope.existingUser != null}">
                     <div class="alert alert-danger">

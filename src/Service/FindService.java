@@ -51,4 +51,11 @@ public class FindService {
         boolean result = dao.update(find);
         return result;
     }
+
+    public List<Find> getSpecifiedAmount(int startIndex, int amount) throws NoSuchAlgorithmException, NamingException {
+        DAOFactory daoFactory = DAOFactory.getDAOFactory();
+        FindDAO dao = daoFactory.getFindDAO();
+        List<Find> finds = dao.getSpecifiedAmount(startIndex,amount);
+        return finds;
+    }
 }

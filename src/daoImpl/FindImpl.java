@@ -14,6 +14,7 @@ import util.ConnectionProvider;
 import javax.naming.NamingException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,9 @@ public class FindImpl implements FindDAO {
     private static final String READ =
             "SELECT user.user_id, username, email, is_active, password, find_id, name, description, url, date, up_vote, down_vote "
                     + "FROM find LEFT JOIN user ON find.user_id=user.user_id WHERE find_id=:find_id;";
+
+    private static final String READ_SPECIFIC_AMOUNT = "SELECT user.user_id, username, email, is_active, password, find_id, name, description, url, date, up_vote, down_vote\n" +
+            "FROM find LEFT JOIN user ON find.user_id=user.user_id WHERE find_id >= :startIndex ORDER BY find_id limit :amount;";
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     public FindImpl() throws NamingException {
@@ -92,6 +96,16 @@ public class FindImpl implements FindDAO {
     public List<Find> getAll() {
         return jdbcTemplate.query(READ_ALL,new FindRowMapper());
     }
+
+    @Override
+    public List<Find> getSpecifiedAmount(int startIndex, int numberOfArticlePerpage) {
+        Map<String,Object> paramMap = new HashMap<>();
+        paramMap.put("startIndex",startIndex);
+        paramMap.put("amount",numberOfArticlePerpage);
+        SqlParameterSource parameterSource = new MapSqlParameterSource(paramMap);
+        return jdbcTemplate.query(READ_SPECIFIC_AMOUNT,parameterSource,new FindRowMapper());
+    }
+
 
     public class FindRowMapper implements RowMapper<Find>
     {

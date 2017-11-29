@@ -9,6 +9,7 @@ public abstract class DAOFactory {
     public abstract UserDAO getUserDAO() throws NamingException;
     public abstract FindDAO getFindDAO() throws NamingException;
     public abstract VoteDAO getVoteDAO() throws NamingException;
+
     public static DAOFactory getDAOFactory() throws NoSuchAlgorithmException {
         DAOFactory factory;
         factory = getDAOFactory(MYSQL_DAO_FACTORY);

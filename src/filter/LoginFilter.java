@@ -25,12 +25,11 @@ public class LoginFilter implements javax.servlet.Filter {
 
         if (httpServletRequest.getUserPrincipal() != null && httpServletRequest.getSession().getAttribute("user") != null) {
             User user = (User) httpServletRequest.getSession().getAttribute("user");
-            System.out.println(user);
             if (!user.isActive()) {
                 httpServletRequest.getSession().invalidate();
                 HttpServletResponse resp = (HttpServletResponse) servletResponse;
-                Cookie[] killmyCookie = httpServletRequest.getCookies();
-                for (Cookie cookie : killmyCookie) {
+                Cookie[] killMyCookie = httpServletRequest.getCookies();
+                for (Cookie cookie : killMyCookie) {
                     cookie.setMaxAge(0);
                     resp.addCookie(cookie);
                 }
@@ -39,9 +38,7 @@ public class LoginFilter implements javax.servlet.Filter {
         } else if (httpServletRequest.getUserPrincipal() != null && httpServletRequest.getSession().getAttribute("user") == null) {
             try {
                 saveInSession(httpServletRequest);
-            } catch (NamingException e) {
-                e.printStackTrace();
-            } catch (NoSuchAlgorithmException e) {
+            } catch (NamingException | NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }
         }

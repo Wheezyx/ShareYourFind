@@ -37,8 +37,7 @@ public class RegisterController extends HttpServlet{
             e.printStackTrace();
         } catch (DuplicateKeyException e)
         {
-            System.out.println(e.toString());
-            req.setAttribute("existingUser", "Username/email already taken");
+            req.setAttribute("existingUser", "Username/email already taken.");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
         }
     }
