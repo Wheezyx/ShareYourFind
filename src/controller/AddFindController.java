@@ -36,13 +36,11 @@ public class AddFindController extends HttpServlet {
             try {
                 findService.addFind(name, description, url, authUser);
                 resp.sendRedirect(req.getContextPath() + "/");
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            } catch (NamingException e) {
+            } catch (NoSuchAlgorithmException | NamingException e) {
                 e.printStackTrace();
             } catch (DuplicateKeyException e) {
                 req.setAttribute("existingFind", "Find already exists");
-                req.getRequestDispatcher("new.jsp").forward(req, resp);
+                req.getRequestDispatcher("WEB-INF/new.jsp").forward(req, resp);
             }
         } else
             resp.sendError(403);

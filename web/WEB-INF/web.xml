@@ -42,8 +42,15 @@
     <login-config>
         <auth-method>FORM</auth-method>
         <form-login-config>
-            <form-login-page>/login.jsp</form-login-page>
-            <form-error-page>/login.jsp?error=true</form-error-page>
+            <form-login-page>/WEB-INF/login.jsp</form-login-page>
+            <form-error-page>/WEB-INF/login.jsp</form-error-page>
         </form-login-config>
     </login-config>
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <url-pattern>*.jspf</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+        </jsp-property-group>
+    </jsp-config>
 </web-app>

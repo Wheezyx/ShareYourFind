@@ -6,7 +6,7 @@
   Time: 23:51
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>ShareYourFind - register</title>
@@ -17,19 +17,7 @@
 </head>
 <body>
 <!--HEADER-->
-<nav class="navbar navbar-inverse navbar-fixed-top header">
-    <div class="container">
-        <a href="#" class="navbar-brand">ShareYourFind</a>
-
-        <div class="collapse navbar-collapse navHeaderCollapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Add</a></li>
-                <li><a href="#">LogIn</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<jsp:include page="fragment/navbar.jspf"/>
 
 <!--Register formula-->
 
@@ -58,23 +46,18 @@
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Sing up</button>
                 </form>
             </div>
-            Already have an account? <a href="/login.jsp" class="text-center">Log in!</a>
+            Already have an account? <a href="/login" class="text-center">Log in!</a>
         </div>
     </div>
 </div>
 
 <!--FOOTER-->
 
-<footer class="footer">
-    <div class="container">
-        <p class="navbar-text">ShareYourFind - developed by <a target="_blank" href="https://github.com/Wheezyx">Mateusz
-            Wedeł</a></p>
-    </div>
-</footer>
+<jsp:include page="fragment/footer.jspf"/>
 
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src="resources/js/bootstrap.js"></script>
-<script src="resources/js/repeatPassword.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/repeatPassword.js"></script>
 </body>
 </html>

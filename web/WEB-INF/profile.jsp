@@ -15,26 +15,7 @@
     <link href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top header">
-    <div class="container">
-        <a href="#" class="navbar-brand">ShareYourFind</a>
-
-        <div class="collapse navbar-collapse navHeaderCollapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="index.jsp">Home</a></li>
-                <li><a href="${pageContext.request.contextPath}/add">Add</a></li>
-                <c:choose>
-                    <c:when test="${not empty sessionScope.user}">
-                        <li><a href="logout">Log out!</a></li>
-                    </c:when>
-                    <c:otherwise>
-                        <li><a href="login">Log in!</a></li>
-                    </c:otherwise>
-                </c:choose>
-            </ul>
-        </div>
-    </div>
-</nav>
+<jsp:include page="fragment/navbar.jspf"/>
 
 <div class="container numberColor">
     <div class="row">
@@ -110,12 +91,8 @@
 </div>
 
 
-<footer class="footer">
-    <div class="container">
-        <p class="navbar-text">ShareYourFind - developed by <a target="_blank" href="https://github.com/Wheezyx">Mateusz
-            Wedeł</a></p>
-    </div>
-</footer>
+<jsp:include page="fragment/footer.jspf"/>
+
 
 <script src="http://code.jquery.com/jquery-1.11.2.min.2"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>

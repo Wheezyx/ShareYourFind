@@ -1,0 +1,19 @@
+<%--
+    Created by IntelliJ IDEA
+    User: MSI
+    Date: 30.11.2017
+--%>
+<%@ page contentType="text/html;charset=UTF-8"%>
+<html>
+<head>
+    <title>$Title$</title>
+</head>
+<body>
+<footer class="footer">
+    <div class="container">
+        <p class="navbar-text">ShareYourFind - developed by
+            <a target="_blank" href="https://github.com/Wheezyx">Mateusz Wedeł</a></p>
+    </div>
+</footer>
+</body>
+</html>

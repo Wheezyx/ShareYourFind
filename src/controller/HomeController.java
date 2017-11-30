@@ -30,9 +30,7 @@ public class HomeController extends HttpServlet {
             session.setAttribute("pageNumber", 1);
             try {
                 list = getList(0, FindsPerPage);
-            } catch (NamingException e) {
-                e.printStackTrace();
-            } catch (NoSuchAlgorithmException e) {
+            } catch (NamingException | NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }
             session.setAttribute("list", list);
@@ -45,7 +43,7 @@ public class HomeController extends HttpServlet {
                 session.setAttribute("btnPrevious", "");
             }
         }
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/index.jsp").forward(req, resp);
     }
 
     protected void doPost(HttpServletRequest request,
@@ -64,9 +62,7 @@ public class HomeController extends HttpServlet {
             try {
                 list = getList((Integer) session.getAttribute("startIndex"),
                         FindsPerPage);
-            } catch (NamingException e) {
-                e.printStackTrace();
-            } catch (NoSuchAlgorithmException e) {
+            } catch (NamingException | NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }
             // Calculating and setting page number
@@ -81,9 +77,7 @@ public class HomeController extends HttpServlet {
                         (Integer) session.getAttribute("startIndex")
                                 + FindsPerPage,
                         FindsPerPage).size();
-            } catch (NamingException e) {
-                e.printStackTrace();
-            } catch (NoSuchAlgorithmException e) {
+            } catch (NamingException | NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }
             // logic to disable Next button.
@@ -99,9 +93,7 @@ public class HomeController extends HttpServlet {
             try {
                 list = getList((Integer) session.getAttribute("startIndex"),
                         FindsPerPage);
-            } catch (NamingException e) {
-                e.printStackTrace();
-            } catch (NoSuchAlgorithmException e) {
+            } catch (NamingException | NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }
             // Calculating and setting page number
@@ -119,7 +111,7 @@ public class HomeController extends HttpServlet {
                 session.setAttribute("btnNext", "Next");
             }
         }
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
 
         /*FindService findService = new FindService();
         List<Find> allFinds = findService.getAllFinds((o1, o2) -> {
@@ -139,7 +131,6 @@ public class HomeController extends HttpServlet {
 
     private List<Find> getList(int startIndex, int numberOfArticlePerpage) throws NamingException, NoSuchAlgorithmException {
         FindService findService = new FindService();
-        List<Find> list = findService.getSpecifiedAmount(startIndex, numberOfArticlePerpage);
-        return list;
+        return findService.getSpecifiedAmount(startIndex, numberOfArticlePerpage);
     }
 }

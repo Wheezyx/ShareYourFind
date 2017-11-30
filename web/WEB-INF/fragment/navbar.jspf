@@ -1,0 +1,34 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
+    Created by IntelliJ IDEA
+    User: MSI
+    Date: 30.11.2017
+--%>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<html>
+<head>
+    <title>$Title$</title>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top header">
+    <div class="container">
+        <a href="${pageContext.request.contextPath}" class="navbar-brand">ShareYourFind</a>
+        <div class="collapse navbar-collapse navHeaderCollapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="${pageContext.request.contextPath}">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/add">Add</a></li>
+                <c:choose>
+                    <c:when test="${sessionScope.user != null}">
+                        <li><a href="${pageContext.request.contextPath}/profile">Profile</a></li>
+                        <li><a href="logout">Log out!</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="${pageContext.request.contextPath}/login">Log in!</a></li>
+                    </c:otherwise>
+                </c:choose>
+            </ul>
+        </div>
+    </div>
+</nav>
+</body>
+</html>

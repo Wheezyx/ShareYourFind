@@ -18,7 +18,7 @@ public class RegisterController extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("register.jsp").forward(req,resp);
+        req.getRequestDispatcher("WEB-INF/register.jsp").forward(req,resp);
     }
 
     @Override
@@ -31,14 +31,12 @@ public class RegisterController extends HttpServlet{
         try {
             service.addUser(username,email,pass);
             resp.sendRedirect(req.getContextPath()+ "/");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (NamingException e) {
+        } catch (NoSuchAlgorithmException | NamingException e) {
             e.printStackTrace();
         } catch (DuplicateKeyException e)
         {
             req.setAttribute("existingUser", "Username/email already taken.");
-            req.getRequestDispatcher("register.jsp").forward(req, resp);
+            req.getRequestDispatcher("WEB-INF/register.jsp").forward(req, resp);
         }
     }
 }

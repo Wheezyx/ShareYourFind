@@ -16,29 +16,10 @@
     <link href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top header">
-    <div class="container">
-        <a href="#" class="navbar-brand">ShareYourFind</a>
 
+<jsp:include page="fragment/navbar.jspf"/>
 
-        <div class="collapse navbar-collapse navHeaderCollapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="index.jsp">Home</a></li>
-                <li><a href="${pageContext.request.contextPath}/add">Add</a></li>
-                <c:choose>
-                    <c:when test="${sessionScope.user != null}">
-                        <li><a href="${pageContext.request.contextPath}/profile">Profile</a></li>
-                        <li><a href="logout">Log out!</a></li>
-                    </c:when>
-                    <c:otherwise>
-                        <li><a href="login">Log in!</a></li>
-                    </c:otherwise>
-                </c:choose>
-            </ul>
-        </div>
-    </div>
-</nav>
-
+<!-- MAIN CONTENT -->
 <c:if test="${not empty list}">
 <div class="row find-margin">
     <div class="col-md-12">
@@ -73,6 +54,8 @@
         </c:forEach>
     </div>
 </div>
+
+<!-- PAGINATION BUTTONS-->
 <div class="button-container">
     <c:if test="${btnPrevious!='' && btnPrevious!='Previous Disabled'}">
         <form action="" method="post">
@@ -90,12 +73,7 @@
     </form>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="navbar-text">ShareYourFind - developed by
-            <a target="_blank" href="https://github.com/Wheezyx">Mateusz Wedeł</a></p>
-    </div>
-</footer>
+<jsp:include page="fragment/footer.jspf"/>
 
 <script src="http://code.jquery.com/jquery-1.11.2.min.2"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
