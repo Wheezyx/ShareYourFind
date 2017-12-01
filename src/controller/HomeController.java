@@ -113,7 +113,9 @@ public class HomeController extends HttpServlet {
         }
         request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
 
-        /*FindService findService = new FindService();
+
+        /* SORTING BY 1) Votes count / Adding date
+        FindService findService = new FindService();
         List<Find> allFinds = findService.getAllFinds((o1, o2) -> {
             int vote1 = o1.getUpVote() - o1.getDownVote();
             int vote2 = o2.getUpVote() - o2.getDownVote();

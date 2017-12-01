@@ -31,8 +31,8 @@ public class AdminController extends HttpServlet {
             UserService userService = new UserService();
             try {
                 User user = userService.getByUsername(username);
-                if (req.getParameter("option") == "ban") user.setActive(false);
-                if (req.getParameter("option") == "unban") user.setActive(true);
+                if (req.getParameter("option").equals("ban")) user.setActive(false);
+                if (req.getParameter("option").equals("unban")) user.setActive(true);
                 userService.updateUser(user);
                 req.setAttribute("banOperation", "User banned");
             } catch (NoSuchAlgorithmException e) {
