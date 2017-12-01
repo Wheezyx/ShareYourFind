@@ -2,6 +2,7 @@ package daoImpl;
 
 import dao.UserDAO;
 import model.User;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -25,7 +26,7 @@ public class UserImpl implements UserDAO {
             "SELECT user_id, username, email, password, is_active FROM user WHERE user_id = :id";
     private static final String READ_BY_USERNAME =
             "SELECT user_id, username, email, password, is_active FROM user WHERE username = :username";
-    private static final String UPDATE = "UPDATE user SET password=:password WHERE user_id=:user_id;";
+    private static final String UPDATE = "UPDATE user SET password=:password, is_active=:is_active WHERE user_id=:user_id;";
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -64,12 +65,12 @@ public class UserImpl implements UserDAO {
     public boolean update(User updateObj) {
         boolean result = false;
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("password",updateObj.getPassword());
-        paramMap.put("user_id",updateObj.getId());
+        paramMap.put("password", updateObj.getPassword());
+        paramMap.put("user_id", updateObj.getId());
+        paramMap.put("is_active", updateObj.isActive());
         SqlParameterSource parameterSource = new MapSqlParameterSource(paramMap);
-        int update = jdbcTemplate.update(UPDATE,parameterSource);
-        if (update > 0)
-        {
+        int update = jdbcTemplate.update(UPDATE, parameterSource);
+        if (update > 0) {
             result = true;
         }
         return result;
@@ -89,7 +90,11 @@ public class UserImpl implements UserDAO {
     public User getByUsername(String username) {
         User readedUser;
         SqlParameterSource parameterSource = new MapSqlParameterSource("username", username);
-        readedUser = jdbcTemplate.queryForObject(READ_BY_USERNAME, parameterSource, new RowMapp());
+        try {
+            readedUser = jdbcTemplate.queryForObject(READ_BY_USERNAME, parameterSource, new RowMapp());
+        } catch (EmptyResultDataAccessException e){
+            readedUser = null;
+        }
         return readedUser;
     }
 

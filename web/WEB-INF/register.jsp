@@ -29,9 +29,9 @@
                 <img class="profile-img"
                      src="https://cs.rin.ru/forum/download/file.php?avatar=723065_1497742853.png"
                      alt="">
-                <c:if test="${requestScope.existingUser != null}">
+                <c:if test="${existingUser != null}">
                     <div class="alert alert-danger">
-                        <strong>Danger!</strong> <c:out value="${requestScope.existingUser}"/>
+                        <strong>Danger!</strong> <c:out value="${existingUser}"/>
                     </div>
                 </c:if>
                 <form class="form-signin" method="post" action="register">

@@ -152,7 +152,7 @@ body {
 .button-container {
 
     display: flex;
-    width: 110%;
+    width: 100%;
     justify-content: center;
 }
 
