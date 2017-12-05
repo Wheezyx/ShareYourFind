@@ -6,7 +6,7 @@
   Time: 00:47
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Add new</title>
@@ -26,6 +26,11 @@
                 <strong>Danger!</strong> <c:out value="${banOperation}"/>
             </div>
         </c:if>
+        <c:if test="${deleteFindOperation != null}">
+            <div class="alert alert-warning">
+                <strong>Danger!</strong> <c:out value="${deleteFindOperation}"/>
+            </div>
+        </c:if>
         <form class="form-signin" method="post" action="admin">
             <h2 class="form-signin-heading">Manage your users</h2>
             <input name="inputUsername" type="text" class="form-control" placeholder="Type username"/>
@@ -35,20 +40,12 @@
                 <option value="ban">Ban</option>
                 <option value="unban">Unban</option>
             </select>
-            <input class="btn btn-lg btn-primary btn-block" type="submit"
-                   value="Do it!" />
-        </form>
-    </div>
-</div>
-
-<div class="container">
-    <div class="col-md-8 col-md-offset-2">
-        <form class="form-signin" method="post" action="admin">
+            <br>
             <h2 class="form-signin-heading">Delete any find?</h2>
             <input name="inputFindName" type="text" class="form-control" placeholder="Type name"
-                   required autofocus />
+                   autofocus/>
             <input class="btn btn-lg btn-primary btn-block" type="submit"
-                   value="Delete!" />
+                   value="Do it!"/>
         </form>
     </div>
 </div>

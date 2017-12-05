@@ -21,5 +21,6 @@
             userCredCol="password"
             userRoleTable="user_role"
             roleNameCol="role_name"
-            localDataSource="true"/>
+            localDataSource="true"
+            digest="MD5"/>
 </Context>

@@ -41,21 +41,31 @@ public class FindService {
     public Find getFindById(long findId) throws NoSuchAlgorithmException, NamingException {
         DAOFactory daoFactory = DAOFactory.getDAOFactory();
         FindDAO dao = daoFactory.getFindDAO();
-        Find find = dao.read(findId);
-        return find;
+        return dao.read(findId);
     }
 
     public boolean updateFind(Find find) throws NoSuchAlgorithmException, NamingException {
         DAOFactory daoFactory = DAOFactory.getDAOFactory();
         FindDAO dao = daoFactory.getFindDAO();
-        boolean result = dao.update(find);
-        return result;
+        return dao.update(find);
     }
 
     public List<Find> getSpecifiedAmount(int startIndex, int amount) throws NoSuchAlgorithmException, NamingException {
         DAOFactory daoFactory = DAOFactory.getDAOFactory();
         FindDAO dao = daoFactory.getFindDAO();
-        List<Find> finds = dao.getSpecifiedAmount(startIndex,amount);
-        return finds;
+        return dao.getSpecifiedAmount(startIndex, amount);
+    }
+
+    public Find getByName(String name) throws NoSuchAlgorithmException, NamingException {
+        DAOFactory daoFactory = DAOFactory.getDAOFactory();
+        FindDAO dao = daoFactory.getFindDAO();
+        return dao.readByName(name);
+    }
+
+    public boolean deleteFind(Long key) throws NoSuchAlgorithmException, NamingException {
+        DAOFactory daoFactory = DAOFactory.getDAOFactory();
+        FindDAO dao = daoFactory.getFindDAO();
+        return dao.delete(key);
+
     }
 }

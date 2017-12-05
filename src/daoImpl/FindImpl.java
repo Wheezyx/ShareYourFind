@@ -3,6 +3,7 @@ package daoImpl;
 import dao.FindDAO;
 import model.Find;
 import model.User;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -36,6 +37,10 @@ public class FindImpl implements FindDAO {
 
     private static final String READ_SPECIFIC_AMOUNT = "SELECT user.user_id, username, email, is_active, password, find_id, name, description, url, date, up_vote, down_vote\n" +
             "FROM find LEFT JOIN user ON find.user_id=user.user_id WHERE find_id >= :startIndex ORDER BY find_id limit :amount;";
+
+    private static final String READ_BY_NAME = "SELECT user.user_id, username, email, is_active, password, find_id, name, description, url, date, up_vote, down_vote "
+            + "FROM find LEFT JOIN user ON find.user_id=user.user_id WHERE name=:name;";
+    private static final String DELETE = "DELETE FROM find WHERE find_id=:find_id;";
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     public FindImpl() throws NamingException {
@@ -63,8 +68,8 @@ public class FindImpl implements FindDAO {
 
     @Override
     public Find read(Long pKey) {
-        SqlParameterSource parameterSource = new MapSqlParameterSource("find_id",pKey);
-        return jdbcTemplate.queryForObject(READ,parameterSource, new FindRowMapper());
+        SqlParameterSource parameterSource = new MapSqlParameterSource("find_id", pKey);
+        return jdbcTemplate.queryForObject(READ, parameterSource, new FindRowMapper());
     }
 
     @Override
@@ -81,7 +86,7 @@ public class FindImpl implements FindDAO {
         paramMap.put("down_vote", updateObj.getDownVote());
         SqlParameterSource paramSource = new MapSqlParameterSource(paramMap);
         int update = jdbcTemplate.update(UPDATE, paramSource);
-        if(update > 0) {
+        if (update > 0) {
             result = true;
         }
         return result;
@@ -89,26 +94,40 @@ public class FindImpl implements FindDAO {
 
     @Override
     public boolean delete(Long key) {
+        SqlParameterSource parameterSource = new MapSqlParameterSource("find_id", key);
+        int result = jdbcTemplate.update(DELETE, parameterSource);
+        if (result != 0) return true;
         return false;
     }
 
     @Override
     public List<Find> getAll() {
-        return jdbcTemplate.query(READ_ALL,new FindRowMapper());
+        return jdbcTemplate.query(READ_ALL, new FindRowMapper());
     }
 
     @Override
     public List<Find> getSpecifiedAmount(int startIndex, int numberOfArticlePerpage) {
-        Map<String,Object> paramMap = new HashMap<>();
-        paramMap.put("startIndex",startIndex);
-        paramMap.put("amount",numberOfArticlePerpage);
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("startIndex", startIndex);
+        paramMap.put("amount", numberOfArticlePerpage);
         SqlParameterSource parameterSource = new MapSqlParameterSource(paramMap);
-        return jdbcTemplate.query(READ_SPECIFIC_AMOUNT,parameterSource,new FindRowMapper());
+        return jdbcTemplate.query(READ_SPECIFIC_AMOUNT, parameterSource, new FindRowMapper());
+    }
+
+    @Override
+    public Find readByName(String name) {
+        SqlParameterSource parameterSource = new MapSqlParameterSource("name", name);
+        Find find;
+        try {
+            find = jdbcTemplate.queryForObject(READ_BY_NAME, parameterSource, new FindRowMapper());
+        } catch (EmptyResultDataAccessException e) {
+            find = null;
+        }
+        return find;
     }
 
 
-    public class FindRowMapper implements RowMapper<Find>
-    {
+    public class FindRowMapper implements RowMapper<Find> {
 
         @Override
         public Find mapRow(ResultSet resultSet, int i) throws SQLException {
