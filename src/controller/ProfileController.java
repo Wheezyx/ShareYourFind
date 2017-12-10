@@ -18,7 +18,7 @@ public class ProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getUserPrincipal() != null) {
-            req.getRequestDispatcher("profile.jsp").forward(req, resp);
+            req.getRequestDispatcher("WEB-INF/profile.jsp").forward(req, resp);
         } else {
             resp.sendError(403);
         }

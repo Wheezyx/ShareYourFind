@@ -11,7 +11,7 @@
             username="root"
             password="root"
             driverClassName="com.mysql.jdbc.Driver"
-            url="jdbc:mysql://localhost:3306/shareyourfind"/>
+            url="jdbc:mysql://localhost:3306/shareyourfind?useSSL=false"/>
 
     <Realm
             className="org.apache.catalina.realm.DataSourceRealm"

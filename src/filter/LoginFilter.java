@@ -32,7 +32,7 @@ public class LoginFilter implements javax.servlet.Filter {
                     cookie.setMaxAge(0);
                     resp.addCookie(cookie);
                 }
-                httpServletRequest.getRequestDispatcher("banned.jsp").forward(httpServletRequest, resp);
+                httpServletRequest.getRequestDispatcher("WEB-INF/banned.jsp").forward(httpServletRequest, resp);
             }
         } else if (httpServletRequest.getUserPrincipal() != null && httpServletRequest.getSession().getAttribute("user") == null) {
             try {
