@@ -26,7 +26,6 @@ public class ProfileController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //Implement showing all of User finds / show number of UP AND DOWN VOTES on User finds
         if (req.getUserPrincipal() != null) {
             User user = (User) req.getSession().getAttribute("user");
             user.setPassword(req.getParameter("inputPassword"));

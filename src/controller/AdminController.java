@@ -2,6 +2,7 @@ package controller;
 
 import Service.FindService;
 import Service.UserService;
+import Service.VoteService;
 import model.Find;
 import model.User;
 
@@ -54,8 +55,9 @@ public class AdminController extends HttpServlet {
             FindService findService = new FindService();
             try {
                 Find find = findService.getByName(name);
-                if (find.getDownVote() > 0 || find.getDownVote() > 0) {
-                    //delete all votes by with ID
+                if (find.getUpVote() > 0 || find.getDownVote() > 0) {
+                    VoteService votes = new VoteService();
+                    votes.deleteVotesByFindId(find.getId());
                 }
                 findService.deleteFind(find.getId());
                 req.setAttribute("deleteFindOperation", "Find removed with all votes");

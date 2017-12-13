@@ -15,6 +15,7 @@ import util.ConnectionProvider;
 import javax.naming.NamingException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,11 +32,11 @@ public class VoteImpl implements VoteDAO {
             + "FROM vote WHERE user_id = :user_id AND find_id = :find_id;";
     private static final String UPDATE= "UPDATE vote SET date=:date, type=:type WHERE vote_id=:vote_id;";
 
+    private static final String DELETE = "DELETE FROM vote WHERE find_id = :find_id;";
 
     public VoteImpl() throws NamingException {
         jdbcTemplate = new NamedParameterJdbcTemplate(ConnectionProvider.getDataSource());
     }
-
 
     @Override
     public Vote getVoteByUserIdFindID(long userId, long findId) {
@@ -95,13 +96,17 @@ public class VoteImpl implements VoteDAO {
 
     @Override
     public boolean delete(Long key) {
-        return false;
+        SqlParameterSource parameterSource = new MapSqlParameterSource("find_id", key);
+        int result = jdbcTemplate.update(DELETE, parameterSource);
+        System.out.println(result);
+        return result != 0;
     }
 
     @Override
     public List<Vote> getAll() {
         return null;
     }
+
 
     private class VoteRowMapper implements RowMapper<Vote> {
         @Override

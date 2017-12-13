@@ -112,23 +112,6 @@ public class HomeController extends HttpServlet {
             }
         }
         request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
-
-
-        /* SORTING BY 1) Votes count / Adding date
-        FindService findService = new FindService();
-        List<Find> allFinds = findService.getAllFinds((o1, o2) -> {
-            int vote1 = o1.getUpVote() - o1.getDownVote();
-            int vote2 = o2.getUpVote() - o2.getDownVote();
-            if (vote1 < vote2)
-                return 1;
-            else if (vote1 > vote2)
-                return -1;
-            return 0;
-        });
-        /*List<Find> allFindByDate =
-                findService.getAllFinds((d1, d2) -> d2.getTimestamp().compareTo(d1.getTimestamp()));
-        req.setAttribute("finds", allFinds);
-        */
     }
 
     private List<Find> getList(int startIndex, int numberOfArticlePerpage) throws NamingException, NoSuchAlgorithmException {

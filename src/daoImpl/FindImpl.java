@@ -28,6 +28,7 @@ public class FindImpl implements FindDAO {
     private static final String READ_ALL =
             "SELECT user.user_id, username, email, is_active, password, find_id, name, description, url, date, up_vote, down_vote "
                     + "FROM find LEFT JOIN user ON find.user_id=user.user_id;";
+
     private static final String UPDATE =
             "UPDATE find SET name=:name, description=:description, url=:url, user_id=:user_id, date=:date, up_vote=:up_vote, down_vote=:down_vote "
                     + "WHERE find_id=:find_id;";
@@ -40,6 +41,7 @@ public class FindImpl implements FindDAO {
 
     private static final String READ_BY_NAME = "SELECT user.user_id, username, email, is_active, password, find_id, name, description, url, date, up_vote, down_vote "
             + "FROM find LEFT JOIN user ON find.user_id=user.user_id WHERE name=:name;";
+
     private static final String DELETE = "DELETE FROM find WHERE find_id=:find_id;";
     private NamedParameterJdbcTemplate jdbcTemplate;
 

@@ -38,7 +38,7 @@ public class VoteService {
         DAOFactory daoFactory = DAOFactory.getDAOFactory();
         VoteDAO dao = daoFactory.getVoteDAO();
         Vote vote = dao.getVoteByUserIdFindID(userId, findId);
-        Vote resultVote = null;
+        Vote resultVote;
         if (vote == null) {
             resultVote = addVote(findId, userId, voteType);
         } else {
@@ -46,12 +46,15 @@ public class VoteService {
         }
         return resultVote;
     }
-
+    public boolean deleteVotesByFindId(Long pkey) throws NamingException, NoSuchAlgorithmException {
+        DAOFactory daoFactory = DAOFactory.getDAOFactory();
+        VoteDAO dao = daoFactory.getVoteDAO();
+        return dao.delete(pkey);
+    }
     public Vote getVoteByFindUserId(long findId, long userId) throws NoSuchAlgorithmException, NamingException {
         DAOFactory daoFactory = DAOFactory.getDAOFactory();
         VoteDAO dao = daoFactory.getVoteDAO();
-        Vote vote = dao.getVoteByUserIdFindID(userId, findId);
-        return vote;
+        return dao.getVoteByUserIdFindID(userId, findId);
     }
 }
 

@@ -12,10 +12,10 @@
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top header">
     <div class="container">
-        <a href="${pageContext.request.contextPath}" class="navbar-brand">ShareYourFind</a>
+        <a href="${pageContext.request.contextPath}/" class="navbar-brand">ShareYourFind</a>
         <div class="collapse navbar-collapse navHeaderCollapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="${pageContext.request.contextPath}">Home</a></li>
+                <li class="active"><a href="${pageContext.request.contextPath}/">Home</a></li>
                 <li><a href="${pageContext.request.contextPath}/add">Add</a></li>
                 <c:choose>
                     <c:when test="${sessionScope.user != null}">

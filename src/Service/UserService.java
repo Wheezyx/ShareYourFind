@@ -22,7 +22,8 @@ public class UserService {
         userDAO.create(user);
     }
 
-  /*  private String encryptPassword(String password) {
+  /*
+  private String encryptPassword(String password) {
         MessageDigest digest = null;
         try {
             digest = MessageDigest.getInstance("MD5");
@@ -49,7 +50,6 @@ public class UserService {
     public boolean updateUser(User user) throws NoSuchAlgorithmException, NamingException {
         DAOFactory factory = DAOFactory.getDAOFactory();
         UserDAO dao = factory.getUserDAO();
-        boolean result = dao.update(user);
-        return result;
+        return dao.update(user);
     }
 }
